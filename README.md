@@ -57,7 +57,7 @@
 }
 ```
 ***
-#### 1.语言编写（[Android客户端](Android "Android")）
+#### 1.java语言编写（[Android客户端](GUET "GUET")）
 ##### 下载地址：点击下载[客户端](Android "Android")
 
    
