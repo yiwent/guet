@@ -18,18 +18,19 @@ import org.apache.http.protocol.HttpContext;
 public class MyHttpClient extends AsyncHttpClient {
     @Override
     public void setEnableRedirects(final boolean enableRedirects) {
-        ((DefaultHttpClient) getHttpClient()).setRedirectHandler(new DefaultRedirectHandler() {
-            @Override
-            public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
-                int statusCode = response.getStatusLine().getStatusCode();
-                Log.i("setEnableRedirects", "code:"+ statusCode);
-                if (statusCode == 301 || statusCode == 302) {
-                    Log.i("setEnableRedirects", "enableRedirects: true");
-                    return enableRedirects;
-                }
-                return false;
-            }
-        });
+        ((DefaultHttpClient) getHttpClient()).
+                setRedirectHandler(new DefaultRedirectHandler() {
+                    @Override
+                    public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
+                        int statusCode = response.getStatusLine().getStatusCode();
+                        Log.i("setEnableRedirects", "code:" + statusCode);
+                        if (statusCode == 301 || statusCode == 302) {
+                            Log.i("setEnableRedirects", "enableRedirects: true");
+                            return enableRedirects;
+                        }
+                        return false;
+                    }
+                });
     }
 
 }

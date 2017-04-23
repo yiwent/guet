@@ -3,6 +3,7 @@ package com.yiwen.guet.service;
 import android.util.Log;
 
 import com.yiwen.guet.db.LinkNode;
+import com.yiwen.guet.utils.HttpUtil;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,7 +39,16 @@ public class LinkService {
     public static String getLinkByName(String name) {
         List<LinkNode> find = DataSupport.where("title=?", name).limit(1).find(LinkNode.class);
         if (find.size() != 0) {
-            return find.get(0).getLink();
+            String linkName = find.get(0).getLink();
+            if (linkName.indexOf("..") > -1) {
+                linkName = HttpUtil.URL_BASE + linkName.substring(linkName.indexOf("/"));
+                Log.d("linkName", "getLinkByName: " + linkName);
+            } else {
+                linkName = "http://bkjw.guet.edu.cn/student/public/" + linkName;
+                Log.d("linkName1", "getLinkByName: " + linkName);
+            }
+
+            return linkName;
         } else {
             return null;
         }
@@ -61,22 +71,19 @@ public class LinkService {
         LinkNode linkNode = null;
         StringBuilder result = new StringBuilder();
         Document doc = Jsoup.parse(content);
-        Elements elements = doc.select("li");
+        Elements elements = doc.select("a");
         for (Element element : elements) {
-            result.append(element.html() + "\n" + "*" + element.attr("a href") + "\n");
-
-
-            if (element.attr("a href") != null & element.attr("a href").length() > 2) {
-                linkNode = new LinkNode();
-                linkNode.setTitle(element.text());
-                linkNode.setLink(element.attr("a href"));
-                Log.d("parseMenu", "parseMenu: 0a" + element.attr("a href"));
-                save(linkNode);
+            result.append(element.text().trim() + "\n" + "*" + element.attr("href").trim() + "\n");
+            if ("办事指南".equals(element.text().trim())) {
+                continue;
             }
-
-
+            linkNode = new LinkNode();
+            linkNode.setTitle(element.text().trim());
+            linkNode.setLink(element.attr("href").trim());
+            Log.d("parseMenu", element.text() + element.attr("href"));
+            save(linkNode);
         }
-        Log.d("parseMenu", "parseMenu: 1" + result.toString());
+        Log.d("parseMenu", "last" + result.toString());
         return result.toString();
 
     }

@@ -157,8 +157,8 @@ public class LoginActivity extends Activity {
                             if (linkService.isLogin(resultContent) != null) {
                                 Log.d("zafu", "login success0:");
                                 getTite();
-                                //                                String ret = linkService.parseMenu(resultContent);
-                                //                                Log.d("zafu", "login success1:" + ret);
+                                // String ret = linkService.parseMenu(resultContent);
+                                //Log.d("zafu", "login success1:" + ret);
                                 Toast.makeText(getApplicationContext(),
                                         "登录成功！！！", Toast.LENGTH_SHORT).show();
                                 jump2Main();
@@ -205,11 +205,22 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                SharedPreferenceUtil util = new SharedPreferenceUtil(
+                        getApplicationContext(), "accountInfo");
+                util.setKeyData("isLogin", "false");
+                Toast.makeText(getApplicationContext(), "请重新登陆",
+                        Toast.LENGTH_SHORT).show();
+                jump2Spash();
             }
         });
 
 
+    }
+
+    private void jump2Spash() {
+        Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     /**

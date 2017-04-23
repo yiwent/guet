@@ -76,7 +76,10 @@ public class MainActivity extends Activity {
                 String title = temp.getText().toString();
                 Log.d("MainActivity", "onItemClick: "+title.equals(LinkUtil.KB));
                 if (title.equals(LinkUtil.KB)) {
-                    jump2Kb(false);
+                  LinkService linkService=LinkService.getLinkService();
+                    String res =LinkService.getLinkByName("修改口令");
+                    Log.d("res", "onItemClick: "+res);
+                    //  jump2Kb(false);
                 } else {
                     Toast.makeText(getApplicationContext(), title,
                             Toast.LENGTH_SHORT).show();

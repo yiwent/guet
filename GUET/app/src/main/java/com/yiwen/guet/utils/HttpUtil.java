@@ -19,7 +19,7 @@ public class HttpUtil {
     // Host地址
     public static final String       HOST         = "bkjw.guet.edu.cn";
     // 基础地址
-    public static final String       URL_BASE     = "http://bkjw.guet.edu.cn/student/";
+    public static final String       URL_BASE     = "http://bkjw.guet.edu.cn/student";
     // 验证码地址
     public static final String       URL_CODE     = "http://此处改成对应的地址/CheckCode.aspx";
     // 登陆地址
