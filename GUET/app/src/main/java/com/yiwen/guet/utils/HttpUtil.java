@@ -161,7 +161,7 @@ public class HttpUtil {
         dialog.show();
         String link = linkService.getLinkByName(urlName);
         if (link != null) {
-            HttpUtil.URL_QUERY = HttpUtil.URL_QUERY.replace("QUERY", link);
+            HttpUtil.URL_QUERY = link;
         } else {
             Toast.makeText(context, "链接出现错误", Toast.LENGTH_SHORT).show();
             return;
