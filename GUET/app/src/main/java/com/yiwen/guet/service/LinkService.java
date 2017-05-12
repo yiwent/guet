@@ -95,7 +95,7 @@ public class LinkService {
             Element element = elements.get(0);
             return element.text();
         } catch (IndexOutOfBoundsException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         return null;
     }

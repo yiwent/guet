@@ -30,6 +30,7 @@ public class HttpUtil {
     public static       String       URL_QUERY    = "http://bkjw.guet.edu.cn/student/coursetable.asp";
     //title
     public static       String       URL_TITLE    = "http://bkjw.guet.edu.cn/student/public/mnall.asp";
+
     public static       String       URL_BASEINFO = "http://bkjw.guet.edu.cn/student/Info.asp";
     /**
      * 请求参数
