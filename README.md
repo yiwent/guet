@@ -35,7 +35,7 @@
 * 通过正则表达式获取cookie
   
 ```php
-     function getcookie()//获取cookie
+    function getcookie()//获取cookie
     {
         $username=$this->username;
         $password=$this->password;
@@ -55,9 +55,9 @@
     }
         return $cookie;
     }
-    ```
+```
 ***
-#### 1.java语言编写（[Android客户端](GUET "GUET")）
+#### 2.java语言编写（[Android客户端](GUET "GUET")）
 ##### 下载地址：点击下载[客户端](Android "Android")
 
    
